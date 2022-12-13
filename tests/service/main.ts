@@ -1,10 +1,10 @@
 // @ts-ignore
-import * as a from './migrations/**/*';
+import * as a from 'glob:./migrations/**/*';
 // @ts-ignore
-import c from './migrations/**/*';
+import c from 'glob:./migrations/**/*';
 
 try {
-  const b = require('./entities/**/*');
+  const b = require('glob:./entities/**/*');
 
   console.log(a);
   console.log(b);

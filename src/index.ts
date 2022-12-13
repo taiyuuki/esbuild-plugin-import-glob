@@ -1,6 +1,10 @@
 import fastGlob from 'fast-glob';
 import { Plugin } from 'esbuild';
 
+function resolvePath(path: string){
+  return path.replace('glob:', '')
+}
+
 const EsbuildPluginImportGlob = (): Plugin => ({
   name: 'require-context',
   setup: (build) => {
@@ -10,10 +14,10 @@ const EsbuildPluginImportGlob = (): Plugin => ({
       }
 
       return {
-        path: args.path,
+        path: resolvePath(args.path),
         namespace: 'import-glob',
         pluginData: {
-          resolveDir: args.resolveDir,
+          resolveDir: resolvePath(args.resolveDir),
         },
       };
     });

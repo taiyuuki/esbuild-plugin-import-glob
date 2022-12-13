@@ -2,44 +2,55 @@
 
 A esbuild plugin which allows to import multiple files using the glob syntax.
 
-## Basic Usage
+Forked from [`esbuild-plugin-import-glob`](https://github.com/thomaschaaf/esbuild-plugin-import-glob)
+
+Changes in this fork: Prefix the path of the import module to declare types.
+
+## Usage
 
 1. Install this plugin in your project:
 
    ```sh
-   npm install --save-dev esbuild-plugin-import-glob
+   npm install --save-dev @taiyuuki/esbuild-plugin-import-glob
    ```
 
 2. Add this plugin to your esbuild build script:
 
    ```diff
-   +const ImportGlobPlugin = require('esbuild-plugin-import-glob');
+   +import importGlobPlugin from 'esbuild-plugin-import-glob'
     ...
     esbuild.build({
       ...
       plugins: [
-   +    ImportGlobPlugin(),
+   +    ImportGlobPlugin.default(),
       ],
     })
    ```
 
-3. Use import or require
+3. Import
 
-   ```typescript
-   // @ts-ignore
-   import migrationsArray from './migrations/**/*';
-
-   // contains default export
+   ```ts
+   import migrationsArray from 'glob:./migrations/**/*';
+   
    migrationsArray[0].default;
    ```
 
-   ```typescript
-   // @ts-ignore
-   import * as migrations from './migrations/**/*';
-
-   const { default: migrationsArray, filenames } = migrations;
+   ```ts
+   import * as migrations from 'glob:./migrations/**/*';
+   
+const { default: migrationsArray, filenames } = migrations;
    ```
 
-   ```typescript
-   const { default: migrationsArray, filenames } = require('./migrations/**/*');
+
+4.  Example of declaration type
+
+   ```ts
+   // types.d.ts
+   declare module 'glob:./migrations/*' {
+       interface Example { /*  */ }
+       const examples: { default: Example }[]
+       export default examples
+   }
    ```
+
+   
