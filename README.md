@@ -22,7 +22,7 @@ Changes in this fork: Prefix the path of the import module to declare types.
     esbuild.build({
       ...
       plugins: [
-   +    ImportGlobPlugin.default(),
+   +    ImportGlobPlugin(),
       ],
     })
    ```

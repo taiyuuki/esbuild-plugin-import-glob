@@ -49,4 +49,4 @@ const EsbuildPluginImportGlob = (): Plugin => ({
   },
 });
 
-export default EsbuildPluginImportGlob;
+export = EsbuildPluginImportGlob;
