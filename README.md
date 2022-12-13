@@ -37,8 +37,8 @@ Changes in this fork: Prefix the path of the import module to declare types.
 
    ```ts
    import * as migrations from 'glob:./migrations/**/*';
-   
-const { default: migrationsArray, filenames } = migrations;
+
+   const { default: migrationsArray, filenames } = migrations;
    ```
 
 
