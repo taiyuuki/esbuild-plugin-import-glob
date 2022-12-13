@@ -1,6 +1,6 @@
 {
   "name": "@taiyuuki/esbuild-plugin-import-glob",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A esbuild plugin which allows to import multiple files using the glob syntax.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,10 +15,7 @@
     }
   },
   "scripts": {
-    "prepare": "npm run build",
-    "build": "npm run clean && npm run compile",
     "compile": "tsup",
-    "clean": "rimraf ./dist",
     "test": "jest"
   },
   "repository": {

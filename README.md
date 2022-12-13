@@ -17,7 +17,7 @@ Changes in this fork: Prefix the path of the import module to declare types.
 2. Add this plugin to your esbuild build script:
 
    ```diff
-   +import importGlobPlugin from 'esbuild-plugin-import-glob'
+   +import importGlobPlugin from '@taiyuuki/esbuild-plugin-import-glob'
     ...
     esbuild.build({
       ...
