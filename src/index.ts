@@ -1,23 +1,28 @@
 import fastGlob from 'fast-glob';
 import { Plugin } from 'esbuild';
 
-function resolvePath(path: string){
-  return path.replace('glob:', '')
+interface EsbuildPluginImportGlobOptions {
+  prefix: string
 }
 
-const EsbuildPluginImportGlob = (): Plugin => ({
+function resolvePath(path: string, prefix: string | undefined){
+  return prefix ? path.replace(`${prefix}:`, '') : path
+}
+
+const EsbuildPluginImportGlob = (options?: EsbuildPluginImportGlobOptions): Plugin => ({
   name: 'require-context',
   setup: (build) => {
+    const prefix = options?.prefix
     build.onResolve({ filter: /\*/ }, async (args) => {
       if (args.resolveDir === '') {
         return; // Ignore unresolvable paths
       }
 
       return {
-        path: resolvePath(args.path),
+        path: resolvePath(args.path, prefix),
         namespace: 'import-glob',
         pluginData: {
-          resolveDir: resolvePath(args.resolveDir),
+          resolveDir: resolvePath(args.resolveDir, prefix),
         },
       };
     });

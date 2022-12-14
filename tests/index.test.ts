@@ -7,7 +7,7 @@ describe('test', () => {
     const result = await build({
       entryPoints: [path.resolve(__dirname, 'service', 'main.ts')],
       write: false,
-      plugins: [requireContext()],
+      plugins: [requireContext({ prefix: 'test' })],
       outfile: `tests/bundle.js`,
       bundle: true,
     });
